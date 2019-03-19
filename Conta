@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public abstract class Conta {
+	
+	protected TipoConta tipoConta;
+	protected int limiteSaque;
+	protected ArrayList <Movimentacao> movimentacoes = new ArrayList <Movimentacao> ();
+	
+	public Conta (int LimiteSaque){
+		limiteSaque = LimiteSaque;
+	}
+	public TipoConta GetTipoConta (){
+		return tipoConta;
+	}
+	public abstract void GetValues ();
+}
