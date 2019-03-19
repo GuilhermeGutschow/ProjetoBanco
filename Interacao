@@ -1,0 +1,66 @@
+import java.util.*;
+public class Interacao {
+	Scanner input = new Scanner (System.in);
+	public int GetLimiteSaque() {
+		System.out.println("Qual será o limite de saque da conta?");
+		return (input.nextInt());
+	}
+	public int GetTipoConta() {
+		int tipoConta = 0;
+		System.out.println("Digite 1 para uma conta corrente ou 2 para uma conta poupanca.");
+		while (tipoConta != 1 && tipoConta != 2){
+			tipoConta = input.nextInt();
+			if (tipoConta != 1 && tipoConta != 2){
+				System.out.println("Numero invalidao. Digite 1 para uma conta corrente ou 2 para uma conta poupanca.");
+			}
+		}
+		return tipoConta;
+	}
+	
+	public int GetNumeroConta () {
+		System.out.println("Digite o numero da conta.");
+		return input.nextInt();
+	}
+	
+	public int GetSaldo () {
+		System.out.println("Digite o saldo da conta.");
+		return input.nextInt();
+	}
+	
+	public boolean GetStatusChequeEspecial () {
+		int statusChequeEspecial = 0;
+		System.out.println("Digite 1 se a conta possuir direito a cheque especial ou 2 caso ela não possua.");
+		while (statusChequeEspecial != 1 && statusChequeEspecial != 2){
+			statusChequeEspecial = input.nextInt();
+			if (statusChequeEspecial != 1 && statusChequeEspecial != 2){
+				System.out.println("Numero invalidao. Digite 1 caso a conta possua direito a um cheque especial ou 2 caso este"
+						+ "não seja o caso.");
+			}
+		}
+		switch (statusChequeEspecial){
+		case 1:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	public int GetLimiteChequeEspecial () {
+		System.out.println("Digite o limite do Cheque Especial.");
+		return input.nextInt();
+	}
+	
+	public double GetVariacao () {
+		System.out.println("Digite a variacao do cartao poupanca.");
+		return input.nextDouble();
+	}
+	public int GetLimiteMensal () {
+		System.out.println("Digite o limite mensal do cartao.");
+		return input.nextInt();
+	}
+	public int GetEscolha () {
+		System.out.println("Digite o numero da opcao desejada:");
+		System.out.println("1-Criar nova conta. 2-");
+		return input.nextInt();
+	}
+}
