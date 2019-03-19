@@ -7,6 +7,8 @@ public abstract class Conta {
 	protected TipoConta tipoConta;
 	protected int limiteSaque;
 	protected ArrayList <Movimentacao> movimentacoes = new ArrayList <Movimentacao> ();
+	protected Cliente cliente;
+	protected Agencia agencia;
 	
 	public Conta (int LimiteSaque, int NumeroConta, int Saldo){
 		limiteSaque = LimiteSaque;
