@@ -1,0 +1,5 @@
+public class PessoaFisica extends Cliente
+{
+    int cpf;
+    String estadocivil;
+}
