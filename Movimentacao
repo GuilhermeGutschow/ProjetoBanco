@@ -1,0 +1,5 @@
+public class Movimentacao {
+	private String descricao;
+	private int valor;
+	private MovimentacaoEnum tipoMovimentacao;
+}
