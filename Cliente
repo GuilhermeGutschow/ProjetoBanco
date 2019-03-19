@@ -1,0 +1,8 @@
+import java.util.ArrayList;
+public class Cliente
+{
+    String nome, endereco, email;
+    int telefone;
+    private ArrayList <Conta> contas = new ArrayList <Conta> ();
+    
+}
