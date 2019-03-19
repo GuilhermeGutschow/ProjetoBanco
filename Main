@@ -1,0 +1,18 @@
+public class Main {
+	public static void main (String ARGS []){
+		Interacao Int = new Interacao ();
+		Banco banco = new Banco (Int);
+		private boolean rodando;
+		while (rodando) {
+			switch (Int.GetEscolha()){
+				case 1:
+				banco.CreateAccount();
+				break;
+				case 2:
+					break;
+				default:
+					Int.EncerrarSistema();
+			}
+		}
+	}
+}
