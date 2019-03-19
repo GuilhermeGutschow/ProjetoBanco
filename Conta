@@ -1,16 +1,25 @@
 import java.util.ArrayList;
 
 public abstract class Conta {
-	
+
+	protected int numeroConta;
+	protected int saldo;
 	protected TipoConta tipoConta;
 	protected int limiteSaque;
 	protected ArrayList <Movimentacao> movimentacoes = new ArrayList <Movimentacao> ();
 	
-	public Conta (int LimiteSaque){
+	public Conta (int LimiteSaque, int NumeroConta, int Saldo){
 		limiteSaque = LimiteSaque;
+		numeroConta = NumeroConta;
+		saldo = Saldo;
 	}
 	public TipoConta GetTipoConta (){
 		return tipoConta;
 	}
+	
+	public int GetNumeroConta () {
+		return numeroConta;
+	}
+	
 	public abstract void GetValues ();
 }
