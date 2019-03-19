@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+
+public class Banco {
+	private ArrayList <Conta> contas = new ArrayList <Conta> ();
+	Interacao Int;
+	
+	Banco (Interacao ReferenciaInt){
+		Int = ReferenciaInt;
+	}
+	
+	public void CreateAccount () {
+		
+		switch (Int.GetTipoConta()){
+			case 1:
+				if (Int.GetStatusChequeEspecial()){
+					contas.add(new ContaCorrente (Int.GetLimiteSaque(), Int.GetNumeroConta(), Int.GetSaldo(), 
+							true, Int.GetLimiteChequeEspecial()));
+				} else {
+					contas.add(new ContaCorrente (Int.GetLimiteSaque(), Int.GetNumeroConta(), Int.GetSaldo(),
+						false, 0));
+				} break;
+			case 2:
+				contas.add(new ContaPoupanca (Int.GetLimiteSaque(), Int.GetVariacao(), Int.GetLimiteMensal()));
+				break;
+		}
+	}
+}
