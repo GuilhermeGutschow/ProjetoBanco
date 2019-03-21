@@ -3,13 +3,9 @@ public class ContaPoupanca extends Conta {
 	private double variacao;
 	private int rendimentoMensal;
 	
-	public ContaPoupanca (int LimiteSaque, double Variacao, int RendimentoMensal){
-		super (LimiteSaque);
+	public ContaPoupanca (int LimiteSaque, int NumeroConta, int Saldo, double Variacao, int RendimentoMensal){
+		super (LimiteSaque, NumeroConta, Saldo);
 		variacao = Variacao;
 		rendimentoMensal = RendimentoMensal;
-	}
-	
-	public void GetValues (){
-		
 	}
 }
