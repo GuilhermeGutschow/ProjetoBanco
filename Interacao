@@ -1,6 +1,14 @@
 import java.util.*;
 public class Interacao {
 	Scanner input = new Scanner (System.in);
+
+	public int GetEscolha () {
+		System.out.println("Digite o numero da opcao desejada:");
+		System.out.println("1-Criar nova conta. 2-Remover conta existente. 3-Saque. 4-Deposito. 5-Emitir saldo."
+				+ " 6-Transferencia entre contas. 0-Desligar sistema.");
+		return input.nextInt();
+	}
+	
 	public int GetLimiteSaque() {
 		System.out.println("Qual será o limite de saque da conta?");
 		return (input.nextInt());
@@ -58,9 +66,58 @@ public class Interacao {
 		System.out.println("Digite o limite mensal do cartao.");
 		return input.nextInt();
 	}
-	public int GetEscolha () {
-		System.out.println("Digite o numero da opcao desejada:");
-		System.out.println("1-Criar nova conta. 2-");
+	public void EncerrarSistema () {
+		System.out.print("Sistema Encerrando.");
+	}
+	public void ContaApagada (int numeroDaConta) {
+		System.out.println("Conta de numero " + numeroDaConta + " apagada com sucesso.");
+	}
+	public void ContaInexistente (int numeroDaConta) {
+		System.out.println("Conta de numero " + numeroDaConta + " não existe.");
+	}
+	public void EmitirSaldo (int saldo){
+		System.out.println("O Saldo da conta e de " + saldo + ".");
+	}
+	public int GetValorSaque (){
+		System.out.println("Digite o valor que voce deseja sacar.");
 		return input.nextInt();
+	}
+	public void SaqueRealizado (){
+		System.out.println("Saque realizado.");
+	}
+	public void ValorUltrapassaSaldo (){
+		System.out.println("Operacao nao pode ser realizada, o valor de saque ultrapassa o saldo do cartao.");
+	}
+	public void ValorUltrapassaLimiteSaque (){
+		System.out.println("Operacao noa pode ser realizada, o valor de saque ultrapassa o limite de saque.");
+	}
+	public void ValorInvalido (){
+		System.out.println("Valor invalido.");
+	}
+	public int GetValorDeposito (){
+		System.out.println("Digite o valor que deseja depoistar na conta.");
+		return input.nextInt();
+	}
+	public void DepositoExecutado (int valorDeposito, int numeroConta){
+		System.out.println("O valor de " + valorDeposito + " foi depositado na conta de numero " + numeroConta + ".");
+	}
+	public int GetNumeroContaInicial (){
+		System.out.println("Digite o numero da conta da qual voce deseja retirar o dinheiro.");
+		return input.nextInt();
+	}
+	public int GetNumeroContaFinal (){
+		System.out.println("Digite o numero da conta para a qual voce deseja transferir o dinheiro.");
+		return input.nextInt();
+	}
+	public void ContasIguais (){
+		System.out.println("As 2 contas digitadas sao iguais. Operacao cancelada.");
+	}
+	public int GetValorTransferencia (){
+		System.out.println("Digite o valor desejado para a transferencia.");
+		return input.nextInt();
+	}
+	public void TransferenciaCompleta (int valor, int numeroContaInicial, int numeroContaFinal){
+		System.out.println("A transferencia de valor de " + valor + " da conta " + numeroContaInicial + 
+				" para a conta " + numeroContaFinal + " foi concluida com sucesso.");
 	}
 }
