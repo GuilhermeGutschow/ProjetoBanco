@@ -7,8 +7,6 @@ public abstract class Conta {
 	protected TipoConta tipoConta;
 	protected int limiteSaque;
 	protected ArrayList <Movimentacao> movimentacoes = new ArrayList <Movimentacao> ();
-	protected Cliente cliente;
-	protected Agencia agencia;
 	
 	public Conta (int LimiteSaque, int NumeroConta, int Saldo){
 		limiteSaque = LimiteSaque;
@@ -23,5 +21,19 @@ public abstract class Conta {
 		return numeroConta;
 	}
 	
-	public abstract void GetValues ();
+	public int GetSaldo () {
+		return saldo;
+	}
+	
+	public int GetLimiteSaque () {
+		return limiteSaque;
+	}
+	
+	public void RemoverSaldo (int valor) {
+		saldo -= valor;
+	}
+	
+	public void Depositar (int valor) {
+		saldo += valor;
+	}
 }
