@@ -1,27 +1,143 @@
 import java.util.ArrayList;
 
 public class Banco {
+	
 	private ArrayList <Conta> contas = new ArrayList <Conta> ();
 	Interacao Int;
 	
-	Banco (Interacao ReferenciaInt){
+	public Banco (Interacao ReferenciaInt){
 		Int = ReferenciaInt;
 	}
 	
-	public void CreateAccount () {
+	public void CriarConta () {
 		
+		int numeroConta = Int.GetNumeroConta();
+		int saldo = Int.GetSaldo();
 		switch (Int.GetTipoConta()){
 			case 1:
 				if (Int.GetStatusChequeEspecial()){
-					contas.add(new ContaCorrente (Int.GetLimiteSaque(), Int.GetNumeroConta(), Int.GetSaldo(), 
-							true, Int.GetLimiteChequeEspecial()));
+					contas.add(new ContaCorrente (Int.GetLimiteSaque(), numeroConta, saldo, true, Int.GetLimiteChequeEspecial()));
 				} else {
-					contas.add(new ContaCorrente (Int.GetLimiteSaque(), Int.GetNumeroConta(), Int.GetSaldo(),
-						false, 0));
+					contas.add(new ContaCorrente (Int.GetLimiteSaque(), numeroConta, saldo, false, 0));
 				} break;
 			case 2:
-				contas.add(new ContaPoupanca (Int.GetLimiteSaque(), Int.GetVariacao(), Int.GetLimiteMensal()));
+				contas.add(new ContaPoupanca (Int.GetLimiteSaque(), numeroConta, saldo, Int.GetVariacao(), Int.GetLimiteMensal()));
 				break;
 		}
+	}
+	
+	public void RemoverConta () {
+		int numeroConta = Int.GetNumeroConta();
+		Conta conta = ContaPeloNumero(numeroConta);
+		if (conta == null) {
+			Int.ContaInexistente(numeroConta);
+			return;
+		} 
+		contas.remove(conta);
+		Int.ContaApagada(numeroConta);			
+		
+	}
+	
+	public void Sacar (){
+		int numeroConta = Int.GetNumeroConta();
+		Conta conta = ContaPeloNumero(numeroConta);
+		if (conta == null) {
+			Int.ContaInexistente(numeroConta);
+			return;
+		} 
+
+		int valorSaque = Int.GetValorSaque();
+		
+		if (valorSaque <= 0){
+			Int.ValorInvalido();
+			return;
+		}
+		
+		if (valorSaque <= conta.GetSaldo()){
+			if (conta.tipoConta == TipoConta.corrente){
+				ContaCorrente contaCorrente = (ContaCorrente) conta;
+				if (valorSaque > contaCorrente.GetLimiteSaque() + contaCorrente.GetLimiteChequeEspecial()){
+					Int.ValorUltrapassaLimiteSaque();
+					return;		
+				}				
+			}
+			if (valorSaque <= conta.GetLimiteSaque() || conta.tipoConta == TipoConta.corrente){			
+				conta.RemoverSaldo(valorSaque);
+				Int.SaqueRealizado();
+				return;
+			} else {
+				Int.ValorUltrapassaLimiteSaque();
+				return;
+			}
+		}
+		Int.ValorUltrapassaSaldo();
+	}
+	
+	public void Depositar (){
+		int numeroConta = Int.GetNumeroConta();
+		Conta conta = ContaPeloNumero(numeroConta);
+		if (conta == null) {
+			Int.ContaInexistente(numeroConta);
+			return;
+		}
+		int valorDeposito = Int.GetValorDeposito ();
+		if (valorDeposito <= 0){
+			Int.ValorInvalido();
+			return;
+		}
+		
+		conta.Depositar(valorDeposito);
+		Int.DepositoExecutado(valorDeposito, numeroConta);
+	}
+	
+	public void EmitirSaldo (){
+		int numeroConta = Int.GetNumeroConta();
+		Conta conta = ContaPeloNumero(numeroConta);
+		if (conta == null) {
+			Int.ContaInexistente(numeroConta);
+			return;
+		} 
+		Int.EmitirSaldo(conta.GetSaldo());
+	}
+	
+	public void Transferir (){
+		int numeroContaInicial = Int.GetNumeroContaInicial();
+		Conta contaInicial = ContaPeloNumero(numeroContaInicial);
+		if (contaInicial == null) {
+			Int.ContaInexistente(numeroContaInicial);
+			return;
+		}
+		int numeroContaFinal = Int.GetNumeroContaFinal();
+		Conta contaFinal = ContaPeloNumero(numeroContaFinal);
+		if (contaFinal == null) {
+			Int.ContaInexistente(numeroContaFinal);
+			return;
+		} if (contaInicial == contaFinal) {
+			Int.ContasIguais();
+			return;
+		}
+		
+		int valor = Int.GetValorTransferencia();
+		if (valor <= 0){
+			Int.ValorInvalido();
+			return;
+		}
+		if (valor > contaInicial.GetSaldo()){
+			Int.ValorUltrapassaSaldo();
+			return;
+		}
+		
+		contaInicial.RemoverSaldo(valor);
+		contaFinal.Depositar(valor);
+		Int.TransferenciaCompleta(valor, numeroContaInicial, numeroContaFinal);
+	}
+	
+	private Conta ContaPeloNumero (int numeroConta) {
+		for (int i = 0; i < contas.size(); i++){
+			if (contas.get(i).GetNumeroConta() == numeroConta){
+				return contas.get(i);
+			}
+		}
+		return null;
 	}
 }
