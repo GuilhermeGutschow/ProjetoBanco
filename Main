@@ -2,15 +2,29 @@ public class Main {
 	public static void main (String ARGS []){
 		Interacao Int = new Interacao ();
 		Banco banco = new Banco (Int);
-		private boolean rodando;
+		boolean rodando = true;
 		while (rodando) {
 			switch (Int.GetEscolha()){
 				case 1:
-				banco.CreateAccount();
-				break;
-				case 2:
+					banco.CriarConta();
 					break;
-				default:
+				case 2:
+					banco.RemoverConta();
+					break;
+				case 3:
+					banco.Sacar();
+					break;
+				case 4:
+					banco.Depositar();
+					break;
+				case 5:
+					banco.EmitirSaldo();
+					break;
+				case 6:
+					banco.Transferir();
+					break;
+				case 0:
+					rodando = !rodando;
 					Int.EncerrarSistema();
 			}
 		}
