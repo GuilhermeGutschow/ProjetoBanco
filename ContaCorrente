@@ -1,28 +1,22 @@
-import java.util.ArrayList;
 public class ContaCorrente extends Conta {
 
-	private int numeroConta;
-	private int saldo;
 	private boolean statusChequeEspecial;
 	private int limiteChequeEspecial;
 	
 	public ContaCorrente (int LimiteSaque, int NumeroConta, int Saldo, boolean StatusChequeEspecial, int LimiteChequeEspecial){
-		super (LimiteSaque);
+		super (LimiteSaque, NumeroConta, Saldo);
 		numeroConta = NumeroConta;
 		saldo = Saldo;
 		statusChequeEspecial = StatusChequeEspecial;
 		limiteChequeEspecial = LimiteChequeEspecial;
 		tipoConta = TipoConta.corrente;
-		GetValues();
-	}
-	public void GetValues (){
-		System.out.print("Conta corrente criada de numero " + numeroConta + " possuindo saldo de " + saldo +
-				" e limite de saque de " + limiteSaque + ". ");
-		if (statusChequeEspecial){
-			System.out.println("Tendo acesso ao cheque especial com um limite de " + limiteChequeEspecial + ".");
-		} else {
-			System.out.println("Sem acesso ao cheque especial.");
-		}
 	}
 	
+	public boolean GetStatusChequeEspecial () {
+		return statusChequeEspecial;
+	}
+	
+	public int GetLimiteChequeEspecial () {
+		return limiteChequeEspecial;
+	}
 }
