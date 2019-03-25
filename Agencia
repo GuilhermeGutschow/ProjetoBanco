@@ -1,8 +1,17 @@
 import java.util.ArrayList;
-public class Agencia
-{
-    int numero;
-    String nome, endereco;
-    private ArrayList <Cliente> clientes = new ArrayList <Cliente> ();
-    private ArrayList <Conta> contas = new ArrayList <Conta> ();
+public class Agencia {
+	
+	private int numero;
+	private String nome;
+	private String endereco;
+	private ArrayList <Cliente> clientes = new ArrayList <Cliente> ();
+	private ArrayList <Conta> contas = new ArrayList <Conta> ();
+	
+	Agencia (int Numero, String Nome, String Endereco, ArrayList <Cliente> Clientes, ArrayList <Conta> Contas) {
+		numero = Numero;
+		nome = Nome;
+		endereco = Endereco;
+		contas = Contas;
+		clientes = Clientes;
+	}
 }
