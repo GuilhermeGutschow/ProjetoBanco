@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class Banco {
 	
 	private ArrayList <Conta> contas = new ArrayList <Conta> ();
+	private ArrayList <Cliente> clientes = new ArrayList <Cliente> ();
+	private ArrayList <Agencia> agencias = new ArrayList <Agencia> ();
+	
 	Interacao Int;
 	
 	public Banco (Interacao ReferenciaInt){
