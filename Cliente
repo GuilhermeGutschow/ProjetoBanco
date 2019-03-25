@@ -1,8 +1,18 @@
 import java.util.ArrayList;
-public class Cliente
-{
-    String nome, endereco, email;
-    int telefone;
-    private ArrayList <Conta> contas = new ArrayList <Conta> ();
-    
+public abstract class Cliente {
+	
+	protected String nome;
+	protected String endereco;
+	protected int telefone;
+	protected String email;
+	protected ArrayList <Conta> contas = new ArrayList <Conta>();
+	
+	Cliente (String Nome, String Endereco, int Telefone, String Email, ArrayList <Conta> Contas){
+		nome = Nome;
+		endereco = Endereco;
+		telefone = Telefone;
+		email = Email;
+		contas = Contas;
+	}
+	
 }
