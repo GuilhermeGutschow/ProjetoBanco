@@ -1,5 +1,13 @@
-public class PessoaFisica extends Cliente
-{
-    int cpf;
-    String estadocivil;
+import java.util.ArrayList;
+
+public class PessoaFisica extends Cliente {
+	
+	private int cpf;
+	private String estadoCivil;
+	
+	PessoaFisica (String Nome, String Endereco, int Telefone, String Email, ArrayList <Conta> Contas, int Cpf, String EstadoCivil){
+		super (Nome, Endereco, Telefone, Email, Contas);
+		cpf = Cpf;
+		estadoCivil = EstadoCivil;
+	}
 }
