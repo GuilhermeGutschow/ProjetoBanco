@@ -1,4 +1,11 @@
-public class PessoaJuridica extends Cliente
-{
-    int cnpj;
+import java.util.ArrayList;
+
+public class PessoaJuridica extends Cliente {
+	
+	private int cnpj;
+	
+	PessoaJuridica (String Nome, String Endereco, int Telefone, String Email, ArrayList <Conta> Contas, int Cnpj){
+		super (Nome, Endereco, Telefone, Email, Contas);
+		cnpj = Cnpj;
+	}
 }
